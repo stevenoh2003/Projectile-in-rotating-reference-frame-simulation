@@ -14,16 +14,21 @@
     <script src="main.js"></script>
     <div id="bt-container">
       <div id='bt'>
-        <input class="input" name="degreePerFrame" type="number" id="degree" placeholder="degree per frame" value="1"/>
-        <input class="input" name="degreePerFrame" type="number" id="xf" placeholder="xForce" value="10"/>
-        <input class="input" name="degreePerFrame" type="number" id="yf" placeholder="yForce" value="-10"/>
+        <input class="input" name="degreePerFrame" type="number" id="degree" placeholder="degree per frame"/>
+        <!-- <input class="input" name="velocityx" type="number" id="xf" placeholder="Velocity - x"/>
+        <input class="input" name="velocityy" type="number" id="yf" placeholder="Velocity - y" /> -->
+
+        <input class="input" name="velocity" type="number" id="velocity" placeholder="Velocity" />
+
+        <input class="input" name="launchangle" type="number" id="launch" placeholder="launch angle" />
         <br>
         <button class="input" onclick="force()">velocity</button>
-        <button class="input" onclick="rotate()">rotate</button>
+        <button class="input" onclick="dRotate()">rotate</button>
         <button class="input" id="fr" onclick="force_rotate()">velocity+rotate</button>
         <br>
         <button class="input" onclick="start()">record</button>
         <button class="input" onclick="stop()">stop</button>
+        <button onClick="window.location.reload();">Refresh Page</button>
         <!-- <button class="input" onclick="download()">download</button> -->
         
         <span class="input" id="blobURL"></span><br>

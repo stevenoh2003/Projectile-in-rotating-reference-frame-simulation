@@ -1,10 +1,12 @@
 let rotation_speed = 1, //degree per frame
     initial_angle = 0, // initial rotation angle
-    y_force = -0.001,
-    x_force = 0.001, //force applied to the ball
+    // y_force = -0.001,
+    // x_force = 0.001, //force applied to the ball
+    velocity = 0,
     ball_restitution = 0, //bounciness of the ball
     radius = 350,
     object_radius = 5,
+    launch_angle = 0,
     ball_x = window.innerWidth / 2,
     ball_y = window.innerHeight / 2 + radius,
     outter_circle_color = "black";
@@ -147,29 +149,65 @@ Events.on(render, "afterRender", function() {
 // window.requestAnimationFrame(updateRotation);
 //rotate hollow circle
 
+var touchedPeri;
+
 function rotate() {
     if (document.getElementById("degree").value == "") {
         alert("rotation value not filled");
     } else {
-        rotation_speed = parseInt(document.getElementById("degree").value);
+        if(ball.velocity.x == x_force && ball.velocity.y == y_force){
+            rotation_speed = parseFloat(
+              document.getElementById("degree").value
+            );
+            initial_angle += rotation_speed;
+            canvas.style.transform = "rotate(" + initial_angle + "deg)";
+            //console.log(ball.position);
+            console.log(ball.velocity);
+            requestAnimationFrame(rotate);
+        }
+    }
+}
+
+function dRotate(){
+    if (document.getElementById("degree").value == "") {
+        alert("rotation value not filled");
+    } else {
+
+        rotation_speed = parseFloat(document.getElementById("degree").value);
         initial_angle += rotation_speed;
         canvas.style.transform = "rotate(" + initial_angle + "deg)";
-        console.log(ball.position);
-        requestAnimationFrame(rotate);
-
+        //console.log(ball.position);
+        console.log(ball.velocity);
+        requestAnimationFrame(dRotate);
+    
     }
+
 }
 
 function force() {
     if (
-        document.getElementById("xf").value == "" ||
-        document.getElementById("xf").value == ""
+        document.getElementById("velocity").value == "" ||
+        document.getElementById("launch").value == ""
     ) {
-        alert("force vectors not filled");
+        alert("velocity not filled");
     } else {
-        x_force = parseFloat(document.getElementById("xf").value);
-        y_force = parseFloat(document.getElementById("yf").value);
-        Body.setVelocity(ball, { x: x_force, y: y_force });
+
+        // x_force = parseFloat(document.getElementById("xf").value);
+        // y_force = parseFloat(document.getElementById("yf").value);
+        launch_angle = parseFloat(document.getElementById("launch").value);
+        velocity = parseFloat(document.getElementById("velocity").value);
+
+        launch_angle = launch_angle * (Math.PI / 180);
+        
+        x_component = Math.cos(launch_angle);
+        y_component = Math.sin(launch_angle);
+
+
+        Body.setVelocity(ball, { x: x_component * velocity, y: -y_component * velocity });
+
+
+        
+
     }
 }
 
