@@ -1,1 +1,41 @@
-<h1> My Portfolio </h1>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title>frist sketch matter js</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha256-4+XzXVhsDmqanXGHaHvgh1gMQKX40OUvDEBTu8JcmNs=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <canvas id="world"></canvas>
+    <script  src="https://cdnjs.cloudflare.com/ajax/libs/matter-js/0.14.2/matter.min.js"></script>
+    <script src="main.js"></script>
+    <div id="bt-container">
+      <div id='bt'>
+        <input class="input" name="degreePerFrame" type="number" id="degree" placeholder="degree per frame"/>
+        <!-- <input class="input" name="velocityx" type="number" id="xf" placeholder="Velocity - x"/>
+        <input class="input" name="velocityy" type="number" id="yf" placeholder="Velocity - y" /> -->
+
+        <input class="input" name="velocity" type="number" id="velocity" placeholder="Velocity" />
+
+        <input class="input" name="launchangle" type="number" id="launch" placeholder="launch angle" />
+        <br>
+        <button class="input" onclick="force()">velocity</button>
+        <button class="input" onclick="dRotate()">rotate</button>
+        <button class="input" id="fr" onclick="force_rotate()">velocity+rotate</button>
+        <br>
+        <button class="input" onclick="start()">record</button>
+        <button class="input" onclick="stop()">stop</button>
+        <button onClick="window.location.reload();">Refresh Page</button>
+        <!-- <button class="input" onclick="download()">download</button> -->
+        
+        <span class="input" id="blobURL"></span><br>
+        <span class="input" id="download"></span>
+      </div>
+    </div>
+    
+    <div id="center"></div>
+  </body>
+</html>
