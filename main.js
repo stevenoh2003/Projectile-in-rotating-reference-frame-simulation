@@ -1,7 +1,5 @@
 let rotation_speed = 1, //degree per frame
     initial_angle = 0, // initial rotation angle
-    // y_force = -0.001,
-    // x_force = 0.001, //force applied to the ball
     velocity = 0,
     ball_restitution = 0, //bounciness of the ball
     radius = 350,
@@ -155,15 +153,16 @@ function rotate() {
     if (document.getElementById("degree").value == "") {
         alert("rotation value not filled");
     } else {
-        if(ball.velocity.x == x_force && ball.velocity.y == y_force){
-            rotation_speed = parseFloat(
-              document.getElementById("degree").value
-            );
-            initial_angle += rotation_speed;
-            canvas.style.transform = "rotate(" + initial_angle + "deg)";
-            //console.log(ball.position);
-            console.log(ball.velocity);
-            requestAnimationFrame(rotate);
+        console.log(ball.velocity);
+        if (
+          ball.velocity.x > velocity * x_component - 0.0001
+        ) {
+          rotation_speed = parseFloat(document.getElementById("degree").value);
+          initial_angle += rotation_speed;
+          canvas.style.transform = "rotate(" + initial_angle + "deg)";
+          //console.log(ball.position);
+          console.log(ball.velocity);
+          requestAnimationFrame(rotate);
         }
     }
 }
@@ -260,20 +259,4 @@ function download(blob_url) {
 function display(vid) {
     var video = document.getElementById("video");
     video.src = window.URL.createObjectURL(vid);
-}
-
-function change_color() {
-    if (color === "black") {
-        color = "white";
-    } else {
-        color = "black";
-    }
-    rotating_circle = containerPolygon(
-        window.innerWidth / 2,
-        window.innerHeight / 2,
-        50,
-        radius + 10,
-        color
-    );
-
 }
